@@ -52,7 +52,7 @@ var fs=document.documentElement;
 fs.onclick=()=>{
   if (fs.requestFullscreen) {
     fs.requestFullscreen();
-  }else (fs.webkitRequestFullscreen) {
+  }else if(fs.webkitRequestFullscreen) {
     fs.webkitRequestFullscreen();
   }
 };
