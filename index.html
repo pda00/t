@@ -1,6 +1,66 @@
-<body id="a">
-a
-</body>
+<style>
+  html{background-color:white}
+  table,input,textarea{width:99%;}
+  textarea{height:9em}
+  td{width:30%}
+</style>
+<table>
+  <tr><td style="height:2em"></td></tr>
+  <tr><td>File #</td><td><input type="tel"></td></tr>
+  <tr>
+    <td>Email</td><td colspan=2><input type="email"></td>
+  </tr>
+  <tr>
+    <td>Address</td><td colspan=2><input></td>
+  </tr>
+  <tr>
+    <td>VIN</td><td colspan=2><input></td>
+  </tr>
+  <tr>
+    <td>Trim</td>
+    <td>Odo</td>
+    <td>Tire Depth (32nds)</td>
+  </tr>
+  <tr>
+    <td><input></td>
+    <td><input type="number"></td>
+    <td><input type="number"></td>
+  </tr>
+  <tr>
+    <td>License</td><td>Exp</td><td>State</td>
+  </tr>
+  <tr>
+    <td><input></td>
+    <td><input type="month"></td>
+    <td><input></td>
+  </tr>
+  <tr>
+    <td>Damage</td>
+  </tr>
+  <tr>
+    <td colspan=3><textarea></textarea></td>
+  </tr>
+  <tr>
+    <td>UPD</td>
+  </tr>
+  <tr>
+    <td colspan=3><textarea></textarea></td>
+  </tr>
+</table>
 <script>
-document.getElementById('a').onclick=function(){document.documentElement.webkitRequestFullscreen();};
+var elem=document.documentElement;
+elem.onclick=()=>{
+//fs.webkitRequestFullscreen();
+
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+
+};
 </script>
