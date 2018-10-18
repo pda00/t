@@ -1,6 +1,7 @@
 <style>
   html{background-color:white}
   table,input,textarea{width:99%}
+  table{position:relative}
   textarea{height:9em}
   td{width:30%}
 </style>
@@ -48,7 +49,8 @@
   </tr>
 </table>
 <script>
-var fs=document.documentElement;
+var d=document;
+var fs=d.documentElement;
 fs.onclick=()=>{
   if (fs.requestFullscreen) {
     fs.requestFullscreen();
@@ -56,12 +58,12 @@ fs.onclick=()=>{
     fs.webkitRequestFullscreen();
   }
 };
+c=(e)=>d.createElement(e);
 (function(){
-  var table=document.getElementsByTagName('table')[0];
-  var tr=document.createElement('tr');
-  var td=document.createElement('td');
-  td.style.height='20em';
+  var table=d.getElementsByTagName('table')[0];
+  var tr=c('tr');
+  var td=c('td');
+  td.style.height='25em';
   table.appendChild(tr).appendChild(td);
-  var br=document.createElement('br');
 })();
 </script>
