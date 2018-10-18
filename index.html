@@ -1,7 +1,6 @@
 <style>
   html{background-color:white}
   table,input,textarea{width:99%}
-  table{position:relative}
   textarea{height:9em}
   td{width:30%}
 </style>
@@ -57,4 +56,12 @@ fs.onclick=()=>{
     fs.webkitRequestFullscreen();
   }
 };
+(function(){
+  var table=document.getElementsByTagName('table')[0];
+  var tr=document.createElement('tr');
+  var td=document.createElement('td');
+  td.style.height='20em';
+  table.appendChild(tr).appendChild(td);
+  var br=document.createElement('br');
+})();
 </script>
