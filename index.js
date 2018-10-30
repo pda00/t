@@ -45,7 +45,7 @@ let newWorker;
   });
 
   if ('serviceWorker' in navigator) {
-    // Register the service worker
+    // Register the service worker 
     navigator.serviceWorker.register('/t/sw.js').then(reg => {
       reg.addEventListener('updatefound', () => {
 
