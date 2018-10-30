@@ -2,16 +2,16 @@
 
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
-           .register('/pwa-examples/a2hs/sw.js')
+           .register('/t/sw.js')
            .then(function() { console.log('Service Worker Registered'); });
 }
 
 // Code to handle install prompt on desktop
-
+/*
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
 addBtn.style.display = 'none';
-
+*/
 window.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
