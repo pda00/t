@@ -20,7 +20,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   addBtn.style.display = 'block';
 
   addBtn.addEventListener('click', (e) => {
-    // hide our user interface that shows our A2HS button
+    // hide our user interface that shows our button
     addBtn.style.display = 'none';
     // Show the prompt
     deferredPrompt.prompt();
@@ -35,44 +35,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
       });
   });
 });
-
-//new
-let newWorker;
-
-  // The click event on the notification
-  document.getElementById('reload').addEventListener('click', function(){
-    newWorker.postMessage({ action: 'skipWaiting' });
-  });
-
-  if ('serviceWorker' in navigator) {
-    // Register the service worker 
-    navigator.serviceWorker.register('/t/sw.js').then(reg => {
-      reg.addEventListener('updatefound', () => {
-
-        // An updated service worker has appeared in reg.installing!
-        newWorker = reg.installing;
-
-        newWorker.addEventListener('statechange', () => {
-
-          // Has service worker state changed?
-          switch (newWorker.state) {
-            case 'installed':
-
-	// There is a new service worker available, show the notification
-              if (navigator.serviceWorker.controller) {
-                let notification = document.getElementById('notification ');
-    notification .className = 'show';
-              }
-
-              break;
-          }
-        });
-      });
-    });
-
-  }
-
-
    let refreshing;
    // The event listener that is fired when the service worker updates
    // Here we reload the page
