@@ -1,10 +1,5 @@
 // Register service worker to control making site work offline
-
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker
-           .register('/t/sw.js')
-           .then(function() { console.log('Service Worker Registered'); });
-}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/t/sw.js');};
 
 // Code to handle install prompt on desktop
 let deferredPrompt;
@@ -35,6 +30,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
       });
   });
 });
+/*
    let refreshing;
    // The event listener that is fired when the service worker updates
    // Here we reload the page
@@ -43,3 +39,4 @@ window.addEventListener('beforeinstallprompt', (e) => {
       window.location.reload();
       refreshing = true;
     });
+*/
