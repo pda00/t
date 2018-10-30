@@ -1,4 +1,4 @@
-//v4
+//v6
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('video-store').then(function(cache) {
@@ -10,21 +10,10 @@ self.addEventListener('install', function(e) {
    })
  );
 });
-
 self.addEventListener('fetch', function(e) {
-  console.log(e.request.url);
   e.respondWith(
     caches.match(e.request).then(function(response) {
       return response || fetch(e.request);
     })
   );
-});
-
-
-
-//new
-self.addEventListener('message', function (event) {
-  if (event.data.action === 'skipWaiting') {
-    self.skipWaiting();
-  }
 });
