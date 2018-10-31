@@ -4,7 +4,6 @@ self.addEventListener('install', function(e) {
    caches.open('t').then(function(cache) {
      return cache.addAll([
        '/t/',
-       '/t/index.html',
        '/t/index.js'
      ]);
    })
