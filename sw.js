@@ -1,4 +1,4 @@
-//0
+//1
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('t').then(function(cache) {
