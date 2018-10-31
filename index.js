@@ -1,32 +1,53 @@
-// Register service worker to control making site work offline
-// make the whole serviceworker process into a promise so later on we can
-// listen to it and in case new content is available a toast will be shown
-window.isUpdateAvailable = new Promise(function(resolve, reject) {
-	// lazy way of disabling service workers while developing
-	if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
-		// register service worker file
-		navigator.serviceWorker.register('/t/sw.js')
-			.then(reg => {
-				reg.onupdatefound = () => {
-					const installingWorker = reg.installing;
-					installingWorker.onstatechange = () => {
-						switch (installingWorker.state) {
-							case 'installed':
-								if (navigator.serviceWorker.controller) {
-									// new update available
-									resolve(true);
-								} else {
-									// no update available
-									resolve(false);
-								}
-								break;
-						}
-					};
-				};
-			})
-			.catch(err => console.error('[SW ERROR]', err));
-	}
-});
+  let newWorker;
+
+  // The click event on the notification
+  document.getElementById('reload').addEventListener('click', function(){
+    newWorker.postMessage({ action: 'skipWaiting' });
+  });
+
+  let newWorker;
+
+  // The click event on the notification
+  document.getElementById('reload').addEventListener('click', function(){
+    newWorker.postMessage({ action: 'skipWaiting' });
+  });
+
+  if ('serviceWorker' in navigator) {
+    // Register the service worker
+    navigator.serviceWorker.register('/service-worker.js').then(reg => {
+      reg.addEventListener('updatefound', () => {
+
+        // An updated service worker has appeared in reg.installing!
+        newWorker = reg.installing;
+
+        newWorker.addEventListener('statechange', () => {
+
+          // Has service worker state changed?
+          switch (newWorker.state) {
+            case 'installed':
+
+	// There is a new service worker available, show the notification
+              if (navigator.serviceWorker.controller) {
+                let notification = document.getElementById('notification ');
+    notification .className = 'show';
+              }
+
+              break;
+          }
+        });
+      });
+    });
+
+  };
+
+   let refreshing;
+   // The event listener that is fired when the service worker updates
+   // Here we reload the page
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (refreshing) return;
+      window.location.reload();
+      refreshing = true;
+    });
 
 // Code to handle install prompt on desktop
 let deferredPrompt;
@@ -57,14 +78,3 @@ window.addEventListener('beforeinstallprompt', (e) => {
       });
   });
 });
-window['isUpdateAvailable']
-	.then(isAvailable => {
-		if (isAvailable) {
-			const toast = this.toastCtrl.create({
-				message: 'New Update available! Reload the webapp to see the latest juicy changes.',
-				position: 'bottom',
-				showCloseButton: true,
-			});
-			toast.present();
-		}
-	});
