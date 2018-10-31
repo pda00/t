@@ -11,5 +11,5 @@
   ],
   "name": "test app",
   "short_name": "test",
-  "start_url": "/t/index.html"
+  "start_url": "/t/"
 }
