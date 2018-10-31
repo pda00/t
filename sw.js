@@ -1,4 +1,4 @@
-//6
+var v='t6'
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open('t').then(function(cache) {
@@ -13,7 +13,7 @@ self.addEventListener('activate',function(event){
   event.waitUntil(
     caches.keys().then(function(keyList){
       return Promise.all(keyList.map(function(key,i){
-        if(key!=="t")return caches.delete(keyList[i])
+        if(key!==v)return caches.delete(keyList[i])
       }))
     })
   )
