@@ -30,13 +30,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
       });
   });
 });
-/*
-   let refreshing;
-   // The event listener that is fired when the service worker updates
-   // Here we reload the page
-    navigator.serviceWorker.addEventListener('controllerchange', function () {
-      if (refreshing) return;
-      window.location.reload();
-      refreshing = true;
-    });
-*/
+window['isUpdateAvailable']
+	.then(isAvailable => {
+		if (isAvailable) {
+			const toast = this.toastCtrl.create({
+				message: 'New Update available! Reload the webapp to see the latest juicy changes.',
+				position: 'bottom',
+				showCloseButton: true,
+			});
+			toast.present();
+		}
+	});
