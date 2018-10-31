@@ -23,7 +23,6 @@
               if (navigator.serviceWorker.controller) {
                 let notification = document.getElementById('notification').style.display = '';
               }
-
               break;
           }
         });
