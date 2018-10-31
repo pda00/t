@@ -1,7 +1,7 @@
 //0
 self.addEventListener('install', function(e) {
  e.waitUntil(
-   caches.open('video-store').then(function(cache) {
+   caches.open('t').then(function(cache) {
      return cache.addAll([
        '/t/',
        '/t/index.html',
@@ -9,6 +9,15 @@ self.addEventListener('install', function(e) {
      ]);
    })
  );
+});
+self.addEventListener('activate',function(event){
+  event.waitUntil(
+    caches.keys().then(function(keyList){
+      return Promise.all(keyList.map(function(key,i){
+        if(key!=="t")return caches.delete(keyList[i])
+      }))
+    })
+  )
 });
 self.addEventListener('fetch', function(e) {
   e.respondWith(
