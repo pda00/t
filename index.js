@@ -5,13 +5,6 @@
     newWorker.postMessage({ action: 'skipWaiting' });
   });
 
-  let newWorker;
-
-  // The click event on the notification
-  document.getElementById('reload').addEventListener('click', function(){
-    newWorker.postMessage({ action: 'skipWaiting' });
-  });
-
   if ('serviceWorker' in navigator) {
     // Register the service worker
     navigator.serviceWorker.register('/service-worker.js').then(reg => {
