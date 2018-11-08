@@ -1,9 +1,9 @@
-var v='t10';
+var v='t0';
 self.addEventListener('install', function(e) {
  e.waitUntil(
    caches.open(v).then(function(cache) {
      return cache.addAll([
-       '/t/',
+       //'/t/',
        '/t/index.html',
        '/t/index.js'
      ]);
